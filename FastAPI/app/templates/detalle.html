@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Persona - FastAPI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-success">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">🐍 Agenda FastAPI</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3>📋 Detalle de Persona</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>ID:</strong></div>
+                            <div class="col-md-9">{{ persona.id }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Nombre:</strong></div>
+                            <div class="col-md-9">{{ persona.nombre }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Apellido:</strong></div>
+                            <div class="col-md-9">{{ persona.apellido }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Email:</strong></div>
+                            <div class="col-md-9">{{ persona.email }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Teléfono:</strong></div>
+                            <div class="col-md-9">{{ persona.telefono or 'N/A' }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Dirección:</strong></div>
+                            <div class="col-md-9">{{ persona.direccion or 'N/A' }}</div>
+                        </div>
+
+                        {% if persona.created_at %}
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Fecha Creación:</strong></div>
+                            <div class="col-md-9">{{ persona.created_at.strftime('%d/%m/%Y %H:%M') }}</div>
+                        </div>
+                        {% endif %}
+
+                        {% if persona.updated_at %}
+                        <div class="row mb-3">
+                            <div class="col-md-3"><strong>Última Actualización:</strong></div>
+                            <div class="col-md-9">{{ persona.updated_at.strftime('%d/%m/%Y %H:%M') }}</div>
+                        </div>
+                        {% endif %}
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="/web/" class="btn btn-secondary">← Volver</a>
+                            <div>
+                                <a href="/web/editar/{{ persona.id }}" class="btn btn-warning">
+                                    ✏️ Editar
+                                </a>
+                                <a href="/web/eliminar/{{ persona.id }}"
+                                   class="btn btn-danger"
+                                   onclick="return confirm('¿Eliminar esta persona?')">
+                                    🗑️ Eliminar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
